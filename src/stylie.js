@@ -27,7 +27,6 @@ define([
   ,'src/view/css-output'
   ,'src/view/html-input'
   ,'src/view/custom-ease'
-  ,'src/view/rekapi-controls'
   ,'src/view/orientation-controls'
   ,'src/view/management-console'
 
@@ -62,7 +61,6 @@ define([
   ,CSSOutputView
   ,HTMLInputView
   ,CustomEaseView
-  ,RekapiControlsView
   ,OrientationControlsView
   ,ManagementConsoleView
 
@@ -167,10 +165,6 @@ define([
     this.view.helpModal = new ModalView({
       el: document.getElementById('help-contents')
       ,$triggerEl: $('#help-trigger')
-    });
-
-    this.view.rekapiControls = new RekapiControlsView({
-      stylie: this
     });
 
     this.view.background = new BackgroundView({
