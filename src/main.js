@@ -32,8 +32,10 @@ require.config({
         'jquery'
       ]
     }
-  },
-  paths: {
+  }
+
+  // jshint maxlen: 120
+  ,paths: {
     jquery: 'bower_components/jquery/jquery'
     ,'jquery-mousewheel': 'bower_components/jquery-mousewheel/jquery.mousewheel'
     ,'jquery-dragon': 'bower_components/jquery-dragon/src/jquery.dragon'
@@ -46,13 +48,14 @@ require.config({
         'bower_components/jck-library-extensions/src/underscore/underscore.jck'
     ,shifty: 'bower_components/shifty/dist/shifty'
     ,rekapi: 'bower_components/rekapi/dist/rekapi'
-    ,'rekapi-scrubber': 'bower_components/rekapi-controls/src/rekapi-scrubber'
     ,keydrown: 'bower_components/keydrown/dist/keydrown'
+    ,text:
+        'bower_components/rekapi-timeline/app/bower_components/requirejs-text/text'
     ,mustache: 'bower_components/mustache/mustache'
     ,bezierizer: 'bower_components/bezierizer/dist/bezierizer'
 
     // jck-extensions
-    /* jshint maxlen: 120 */
+    // jshint maxlen: 120
     ,'auto-update-textfield':
         'bower_components/jck-library-extensions/src/backbone/auto-update-textfield/auto-update-textfield'
     ,'incrementer-field':
@@ -62,6 +65,11 @@ require.config({
     ,alert: 'bower_components/jck-library-extensions/src/backbone/alert/alert'
     ,modal: 'bower_components/jck-library-extensions/src/backbone/modal/modal'
   }
+  ,packages: [{
+    name: 'rekapi-timeline'
+    ,location: 'bower_components/rekapi-timeline/app/scripts'
+    ,main: 'rekapi.timeline'
+  }]
 });
 
 require([

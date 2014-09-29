@@ -10,6 +10,7 @@
   "dependencies": {
     "shifty": "1.0.1",
     "rekapi": "1.2.0",
+    "rekapi-timeline": "0.0.0",
     "backbone": "~1.0.0",
     "underscore": "~1.5.2",
     "requirejs": "~2.1.6",
