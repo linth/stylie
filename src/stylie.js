@@ -20,6 +20,7 @@ define([
   ,'src/utils'
 
   // Views
+  ,'src/view/rekapi-timeline'
   ,'src/view/checkbox'
   ,'src/view/ease-select'
   ,'src/view/fps-slider'
@@ -54,6 +55,7 @@ define([
   ,constant
   ,util
 
+  ,RekapiTimeelineView
   ,CheckboxView
   ,EaseSelectView
   ,FPSSliderView
@@ -266,6 +268,11 @@ define([
     this.view.orientation = new OrientationControlsView({
       stylie: this
       ,el: document.getElementById('orientation-controls')
+    });
+
+    this.view.rekapiTimeline = new RekapiTimeelineView({
+      stylie: this
+      ,el: document.getElementById('rekapi-timeline')
     });
   };
 

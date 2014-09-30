@@ -66,7 +66,7 @@ require.config({
     ,modal: 'bower_components/jck-library-extensions/src/backbone/modal/modal'
   }
   ,packages: [{
-    name: 'rekapi-timeline'
+    name: 'rekapi.timeline'
     ,location: 'bower_components/rekapi-timeline/app/scripts'
     ,main: 'rekapi.timeline'
   }]
@@ -85,6 +85,7 @@ require([
 
   // Doesn't return anything
   ,'underscore.jck'
+  ,'rekapi.timeline'
 
 ], function (
 
