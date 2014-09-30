@@ -490,7 +490,7 @@ canvas {
       float: right;
     }
 
-    #control-pane button.icon {
+    #control-pane button.glyphicon {
       background: none;
       border: none;
       padding: 0;
@@ -498,12 +498,12 @@ canvas {
 
     #control-pane .pinned-button-array label,
     #control-pane .pinned-button-array button,
-    #control-pane button.icon {
+    #control-pane button.glyphicon {
       color: #aaa;
     }
 
     #control-pane .pinned-button-array label:active,
-    #control-pane button.icon:active {
+    #control-pane button.glyphicon:active {
       color: #ddd;
     }
 
@@ -520,7 +520,11 @@ canvas {
     #control-pane .pinned-button-array button {
       position: absolute;
       right: 6px;
-      top: 0;
+      top: 2px;
+    }
+
+    #control-pane .pinned-button-array .add button {
+      right: 0;
     }
 
   #control-pane span {
@@ -751,7 +755,7 @@ canvas {
     margin-right: 6px;
   }
 
-  #custom-ease .icon {
+  #custom-ease .glyphicon {
     background: none;
     border: none;
     color: #aaa;

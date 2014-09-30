@@ -58,7 +58,7 @@ define([
   var REMOVE_KEYFRAME_BUTTON = [
       '<label class="remove">'
         ,'<span>Remove this keyframe</span>'
-        ,'<button class="icon icon-remove">&nbsp;</button>'
+        ,'<button class="glyphicon glyphicon-remove">&nbsp;</button>'
       ,'</label>'
     ].join('');
 

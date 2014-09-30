@@ -27,7 +27,7 @@ define([
   return Backbone.View.extend({
 
     events: {
-      'click .icon-plus': 'onClickPlusIcon'
+      'click .glyphicon-plus': 'onClickPlusIcon'
       ,'change .bezierizer': 'onBezierizerChange'
       ,'change .custom-ease-select': 'onCurveSelectChange'
     }
