@@ -109,6 +109,7 @@ table {
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -772,3 +773,11 @@ canvas {
   position: fixed;
   right: 0;
 }
+
+#rekapi-timeline {
+
+}
+
+  #rekapi-timeline h1 {
+    font-weight: bold;
+  }
