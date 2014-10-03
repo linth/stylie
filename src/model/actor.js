@@ -100,7 +100,14 @@ define([
         ,rX: 0
         ,rY: 0
         ,rZ: 0
-      }, 'linear');
+      }, {
+        x: 'linear'
+        ,y: 'linear'
+        ,scale: 'linear'
+        ,rX: 'linear'
+        ,rY: 'linear'
+        ,rZ: 'linear'
+      });
     }
 
     ,getNewKeyframeX: function (lastKeyframeX) {

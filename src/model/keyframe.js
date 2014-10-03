@@ -64,15 +64,7 @@ define([
     }
 
     ,getEasingObject: function () {
-      var easingChunks = this.get('easing').split(' ');
-      return {
-        x: easingChunks[0]
-        ,y: easingChunks[1]
-        ,scale: easingChunks[2]
-        ,rX: easingChunks[3]
-        ,rY: easingChunks[4]
-        ,rZ: easingChunks[5]
-      };
+      return this.get('easing');
     }
 
     ,getCSS: function () {
@@ -103,16 +95,7 @@ define([
      * @return {{x: number, y: number, rX: number, rY: number, rZ: number}}
      */
     ,getEasings: function () {
-      var easingChunks = this.attributes.easing.split(' ');
-
-      return {
-        x: easingChunks[0]
-        ,y: easingChunks[1]
-        ,scale: easingChunks[2]
-        ,rX: easingChunks[3]
-        ,rY: easingChunks[4]
-        ,rZ: easingChunks[5]
-      };
+      return this.attributes.easing;
     }
   }, {
 
@@ -127,17 +110,12 @@ define([
      */
     createCSSRuleObject: function (x, y, scale, rX, rY, rZ, isCentered) {
       return {
-        transform:
-          [
-            'translate(', x ,'px, ', y
-            ,'px) scale(', scale, ')'
-            ,' rotateX(', rX
-            ,'deg) rotateY(', rY
-            ,'deg) rotateZ(', rZ
-            ,isCentered
-              ? 'deg) translate(-50%, -50%)'
-              : 'deg)'
-            ].join('')
+        translateX: x + 'px'
+        ,translateY: y + 'px'
+        ,scale: scale
+        ,rotateX: rX + 'deg'
+        ,rotateY: rY + 'deg'
+        ,rotateZ: rZ + 'deg'
       };
     }
   });

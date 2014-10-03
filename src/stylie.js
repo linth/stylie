@@ -153,7 +153,14 @@ define([
         ,rX: 0
         ,rY: 0
         ,rZ: 0
-      }, 'linear linear linear linear linear');
+      }, {
+        x: 'linear'
+        ,y: 'linear'
+        ,scale: 'linear'
+        ,rX: 'linear'
+        ,rY: 'linear'
+        ,rZ: 'linear'
+      });
 
     });
 
