@@ -4,6 +4,7 @@ define([
   'jquery'
   ,'underscore'
   ,'backbone'
+  ,'lateralus'
   ,'shifty'
   ,'rekapi'
 
@@ -42,6 +43,7 @@ define([
   $
   ,_
   ,Backbone
+  ,Lateralus
   ,Tweenable
   ,Rekapi
 
@@ -80,7 +82,9 @@ define([
    * @implements {Backbone.Events}
    * @constructor
    */
-  function Stylie () {
+  var Stylie = Lateralus.beget(function () {
+    Lateralus.apply(this, arguments);
+
     this.config = {
       activeClasses: {
         moz: false
@@ -133,9 +137,7 @@ define([
     $(window).trigger('resize');
 
     window.stylie = this;
-  }
-
-  _.extend(Stylie.prototype, Backbone.Events);
+  });
 
   Stylie.prototype.createDefaultState = function () {
     var winWidth = $win.width();

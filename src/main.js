@@ -61,7 +61,12 @@ require.config({
     ,pane: 'bower_components/jck-library-extensions/src/backbone/pane/pane'
     ,alert: 'bower_components/jck-library-extensions/src/backbone/alert/alert'
     ,modal: 'bower_components/jck-library-extensions/src/backbone/modal/modal'
-  }
+  },
+  packages: [{
+    name: 'lateralus'
+    ,location: 'bower_components/lateralus/scripts'
+    ,main: 'lateralus'
+  }]
 });
 
 require([
@@ -85,5 +90,5 @@ require([
 ) {
   'use strict';
 
-  new Stylie();
+  new Stylie(document.getElementById('main-container'));
 });
