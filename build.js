@@ -12,11 +12,11 @@ requirejs.optimize({
 
   // Compress app code
   requirejs.optimize({
-    name: 'src/main',
+    name: 'app/scripts/main',
     out: 'bin/_app.js',
     baseUrl: './',
     preserveLicenseComments: false,
-    mainConfigFile: 'src/main.js'
+    mainConfigFile: 'app/scripts/main.js'
   }, function (buildResponse) {
     console.log('Built the app code.');
     exec('cat bin/_app.js >> bin/app.js && rm bin/_app.js',

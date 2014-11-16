@@ -68,7 +68,7 @@ require.config({
     ,main: 'lateralus'
   }, {
     name: 'stylie'
-    ,location: 'src'
+    ,location: 'app/scripts'
     ,main: 'stylie'
   }]
 });
