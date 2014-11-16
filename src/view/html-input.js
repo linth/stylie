@@ -4,7 +4,7 @@ define([
   ,'underscore'
   ,'backbone'
 
-  ,'src/utils'
+  ,'../utils'
 
 ], function (
 

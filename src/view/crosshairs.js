@@ -5,8 +5,8 @@ define([
   ,'backbone'
   ,'mustache'
 
-  ,'src/constants'
-  ,'src/view/crosshair'
+  ,'../constants'
+  ,'./crosshair'
 
 ], function (
 

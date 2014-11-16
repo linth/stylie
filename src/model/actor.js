@@ -4,11 +4,11 @@ define([
   ,'underscore'
   ,'backbone'
 
-  ,'src/constants'
-  ,'src/collection/keyframes'
-  ,'src/model/keyframe'
-  ,'src/view/keyframe-forms'
-  ,'src/view/crosshairs'
+  ,'../constants'
+  ,'../collection/keyframes'
+  ,'../model/keyframe'
+  ,'../view/keyframe-forms'
+  ,'../view/crosshairs'
 
 ], function (
 

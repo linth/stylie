@@ -66,12 +66,16 @@ require.config({
     name: 'lateralus'
     ,location: 'bower_components/lateralus/scripts'
     ,main: 'lateralus'
+  }, {
+    name: 'stylie'
+    ,location: 'src'
+    ,main: 'stylie'
   }]
 });
 
 require([
 
-  'src/stylie'
+  'stylie'
 
   // jQuery plugins that get loaded but not actually used as AMD modules.
   // These don't have a matching callback parameter.

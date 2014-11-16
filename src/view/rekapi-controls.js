@@ -4,7 +4,7 @@ define([
   ,'backbone'
   ,'rekapi-scrubber'
 
-  ,'src/constants'
+  ,'../constants'
 
 ], function (
 

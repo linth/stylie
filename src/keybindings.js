@@ -2,7 +2,7 @@ define([
 
   'keydrown'
 
-  ,'src/constants'
+  ,'./constants'
 
 ], function (
 

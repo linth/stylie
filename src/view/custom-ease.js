@@ -8,7 +8,7 @@ define([
 
   ,'incrementer-field'
 
-  ,'src/constants'
+  ,'../constants'
 
 ], function (
 

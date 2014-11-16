@@ -16,27 +16,27 @@ define([
   ,'modal'
 
   // Misc
-  ,'src/keybindings'
-  ,'src/constants'
-  ,'src/utils'
+  ,'./keybindings'
+  ,'./constants'
+  ,'./utils'
 
   // Views
-  ,'src/view/checkbox'
-  ,'src/view/ease-select'
-  ,'src/view/fps-slider'
-  ,'src/view/background'
-  ,'src/view/css-output'
-  ,'src/view/html-input'
-  ,'src/view/custom-ease'
-  ,'src/view/rekapi-controls'
-  ,'src/view/orientation-controls'
-  ,'src/view/management-console'
+  ,'./view/checkbox'
+  ,'./view/ease-select'
+  ,'./view/fps-slider'
+  ,'./view/background'
+  ,'./view/css-output'
+  ,'./view/html-input'
+  ,'./view/custom-ease'
+  ,'./view/rekapi-controls'
+  ,'./view/orientation-controls'
+  ,'./view/management-console'
 
   // Models
-  ,'src/model/animation'
+  ,'./model/animation'
 
   // Collections
-  ,'src/collection/actors'
+  ,'./collection/actors'
 
 ], function (
 

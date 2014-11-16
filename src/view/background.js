@@ -5,7 +5,7 @@ define([
   ,'backbone'
   ,'shifty'
 
-  ,'src/constants'
+  ,'../constants'
 
 ], function (
 

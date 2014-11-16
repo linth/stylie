@@ -3,7 +3,7 @@ define([
   'underscore'
   ,'backbone'
 
-  ,'src/constants'
+  ,'../constants'
 
 ], function (
 

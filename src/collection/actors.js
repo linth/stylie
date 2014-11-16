@@ -3,8 +3,8 @@ define([
   'underscore'
   ,'backbone'
 
-  ,'src/constants'
-  ,'src/model/actor'
+  ,'../constants'
+  ,'../model/actor'
 
 ], function (
 

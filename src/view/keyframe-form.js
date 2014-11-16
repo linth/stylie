@@ -7,8 +7,8 @@ define([
 
   ,'incrementer-field'
 
-  ,'src/constants'
-  ,'src/view/ease-select'
+  ,'../constants'
+  ,'./ease-select'
 
 ], function (
 

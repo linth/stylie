@@ -4,8 +4,8 @@ define([
   ,'underscore'
   ,'backbone'
 
-  ,'src/constants'
-  ,'src/utils'
+  ,'../constants'
+  ,'../utils'
 
 ], function (
 
