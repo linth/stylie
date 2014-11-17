@@ -44,6 +44,7 @@ require.config({
     ,underscore: 'bower_components/lodash/dist/lodash'
     ,'underscore.jck':
         'bower_components/jck-library-extensions/src/underscore/underscore.jck'
+    ,text: 'bower_components/requirejs-text/text'
     ,shifty: 'bower_components/shifty/dist/shifty'
     ,rekapi: 'bower_components/rekapi/dist/rekapi'
     ,'rekapi-scrubber': 'bower_components/rekapi-controls/src/rekapi-scrubber'
@@ -70,6 +71,9 @@ require.config({
     name: 'stylie'
     ,location: 'app/scripts'
     ,main: 'stylie'
+  }, {
+    name: 'stylie.component.container'
+    ,location: 'app/scripts/components/container'
   }]
 });
 
@@ -94,5 +98,5 @@ require([
 ) {
   'use strict';
 
-  new Stylie(document.getElementById('main-container'));
+  new Stylie(document.getElementById('stylie'));
 });

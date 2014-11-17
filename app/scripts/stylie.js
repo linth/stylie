@@ -8,35 +8,19 @@ define([
   ,'shifty'
   ,'rekapi'
 
-  // Extensions
-  ,'tabs'
-  ,'pane'
-  ,'alert'
-  ,'auto-update-textfield'
-  ,'modal'
-
   // Misc
   ,'./keybindings'
   ,'./constants'
   ,'./utils'
-
-  // Views
-  ,'./view/checkbox'
-  ,'./view/ease-select'
-  ,'./view/fps-slider'
-  ,'./view/background'
-  ,'./view/css-output'
-  ,'./view/html-input'
-  ,'./view/custom-ease'
-  ,'./view/rekapi-controls'
-  ,'./view/orientation-controls'
-  ,'./view/management-console'
 
   // Models
   ,'./model/animation'
 
   // Collections
   ,'./collection/actors'
+
+  // Components
+  ,'stylie.component.container'
 
 ], function (
 
@@ -47,30 +31,15 @@ define([
   ,Tweenable
   ,Rekapi
 
-  ,TabsView
-  ,PaneView
-  ,AlertView
-  ,AutoUpdateTextFieldView
-  ,ModalView
-
   ,Keybindings
   ,constant
   ,util
 
-  ,CheckboxView
-  ,EaseSelectView
-  ,FPSSliderView
-  ,BackgroundView
-  ,CSSOutputView
-  ,HTMLInputView
-  ,CustomEaseView
-  ,RekapiControlsView
-  ,OrientationControlsView
-  ,ManagementConsoleView
-
   ,AnimationModel
 
   ,ActorCollection
+
+  ,StylieContainerComponent
 
 ) {
   'use strict';
@@ -117,22 +86,23 @@ define([
       context: $('#preview-area').children()[0]
     });
 
-    this.initViews();
+    this.keybindings = new Keybindings(this);
+    this.containerComponent = this.addComponent(StylieContainerComponent);
 
     var currentActorModel = this.actorCollection.getCurrent();
     this.listenTo(currentActorModel, 'change', _.bind(function () {
       this.rekapi.update();
     }, this));
 
-    if (window.localStorage.transientAnimation) {
-      this.animationModel.setCurrentState(
-          JSON.parse(window.localStorage.transientAnimation));
-    } else {
-      this.createDefaultState();
-    }
+    //if (window.localStorage.transientAnimation) {
+      //this.animationModel.setCurrentState(
+          //JSON.parse(window.localStorage.transientAnimation));
+    //} else {
+      //this.createDefaultState();
+    //}
 
-    this.on(constant.PATH_CHANGED,
-        _.bind(this.saveTransientAnimation, this));
+    //this.on(constant.PATH_CHANGED,
+        //_.bind(this.saveTransientAnimation, this));
 
     $(window).trigger('resize');
 
@@ -163,123 +133,9 @@ define([
     this.view.htmlInput.resetToDefault();
   };
 
-  Stylie.prototype.initViews = function () {
-    this.keybindings = new Keybindings(this);
-
-    this.view.helpModal = new ModalView({
-      el: document.getElementById('help-contents')
-      ,$triggerEl: $('#help-trigger')
-    });
-
-    this.view.rekapiControls = new RekapiControlsView({
-      stylie: this
-    });
-
-    this.view.background = new BackgroundView({
-      stylie: this
-      ,el: $('#tween-path')[0]
-      ,$header: $('header')
-      ,height: $win.height()
-      ,width: $win.width()
-    });
-
-    this.view.showPath = new CheckboxView({
-      $el: $('#show-path')
-      ,callHandlerOnInit: true
-      ,onChange: _.bind(function (evt, isChecked) {
-        this.trigger(constant.TOGGLE_PATH_AND_CROSSHAIRS, !!isChecked);
-      }, this)
-    });
-
-    this.view.controlPane = new PaneView({
-      el: document.getElementById('control-pane')
-    });
-
-    this.view.controlPaneTabs = new TabsView({
-      el: document.querySelector('#control-pane')
-    });
-
-    this.view.cssOutput = new CSSOutputView({
-      stylie: this
-      ,el: document.querySelector('#css-output textarea')
-      ,$trigger: this.view.controlPaneTabs.$el
-          .find('[data-target="css-output"]')
-      ,$animationIteration: $('#iterations')
-    });
-
-    this.view.fpsSlider = new FPSSliderView({
-      stylie: this
-      ,el: document.querySelector('.quality-slider.fps .slider')
-    });
-
-    var cssNameField = new AutoUpdateTextFieldView({
-      el: document.getElementById('css-name')
-    });
-
-    cssNameField.onValReenter = _.bind(function (val) {
-      this.config.className = val;
-      this.trigger(constant.UPDATE_CSS_OUTPUT);
-    }, this);
-
-    this.view.cssNameField = cssNameField;
-
-    ['moz', 'ms', 'o', 'webkit', 'w3'].forEach(function (prefix) {
-      this.view[prefix + 'Checkbox'] = new CheckboxView({
-        $el: $('#' + prefix + '-toggle')
-        ,onChange: _.bind(function (evt, isChecked) {
-          this.config.activeClasses[prefix] = isChecked;
-          this.trigger(constant.UPDATE_CSS_OUTPUT);
-        }, this)
-      });
-    }, this);
-
-    this.view.htmlInput = new HTMLInputView({
-      stylie: this
-      ,el: $('#html-input textarea')[0]
-    });
-
-    this.view.centerToPathCheckbox = new CheckboxView({
-      $el: $('#center-to-path')
-      ,callHandlerOnInit: true
-      ,onChange: _.bind(function (evt, isChecked) {
-        var isCenteredToPath = !!isChecked;
-        var tranformOrigin = isCenteredToPath ? '0 0' : '';
-
-        this.view.htmlInput.$renderTarget.css(
-          'transform-origin', tranformOrigin);
-        this.actorCollection.getCurrent().set(
-          'isCenteredToPath', isCenteredToPath);
-      }, this)
-    });
-
-    this.view.customEase = new CustomEaseView({
-      stylie: this
-      ,el: document.getElementById('custom-ease')
-    });
-
-    this.view.topLevelAlert = new AlertView({
-      el: document.getElementById('top-level-alert')
-    });
-
-    var topLevelAlert = this.view.topLevelAlert;
-    this.on(constant.ALERT_ERROR,
-        _.bind(topLevelAlert.show, topLevelAlert));
-
-    this.view.managementConsole = new ManagementConsoleView({
-      stylie: this
-      ,el: document.getElementById('management-console')
-      ,model: this.animationModel
-    });
-
-    this.view.orientation = new OrientationControlsView({
-      stylie: this
-      ,el: document.getElementById('orientation-controls')
-    });
-  };
-
   Stylie.prototype.clearCurrentState = function () {
     this.actorCollection.getCurrent().removeAllKeyframes();
-    this.view.customEase.removeAllEasings();
+    this.containerComponent.view.view.customEase.removeAllEasings();
   };
 
   Stylie.prototype.saveTransientAnimation = _.throttle(function () {

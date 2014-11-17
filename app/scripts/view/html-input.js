@@ -29,7 +29,7 @@ define([
      */
     ,initialize: function (opts) {
       this.stylie = opts.stylie;
-      this.$renderTarget = $('#preview-area .rekapi-actor');
+      this.$renderTarget = this.$('#preview-area .rekapi-actor');
       this.initialValue = this.readFromDOM();
       this.$el.html(this.initialValue);
     }
