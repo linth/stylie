@@ -22,9 +22,11 @@
     "jck-library-extensions": "~0.0.13",
     "keydrown": "~1.1.2",
     "lodash": "~2.4.1",
-    "lateralus": "~0.0.2"
+    "lateralus": "~0.0.2",
+    "requirejs-text": "~2.0.12"
   },
   "resolutions": {
-    "jquery": "~2.0.2"
+    "jquery": "~2.0.2",
+    "underscore": "1.5.2"
   }
 }
