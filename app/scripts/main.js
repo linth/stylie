@@ -77,6 +77,9 @@ require.config({
   }, {
     name: 'stylie.component.help-modal'
     ,location: 'app/scripts/components/help-modal'
+  }, {
+    name: 'stylie.component.path-preview'
+    ,location: 'app/scripts/components/path-preview'
   }]
 });
 

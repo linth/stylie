@@ -3,44 +3,52 @@ define([
   'jquery'
   ,'underscore'
   ,'backbone'
+  ,'lateralus'
   ,'shifty'
 
-  ,'../constants'
+  ,'text!./template.mustache'
+
+  ,'../../constants'
 
 ], function (
 
   $
   ,_
   ,Backbone
+  ,Lateralus
   ,Tweenable
+
+  ,template
 
   ,constant
 
 ) {
+  'use strict';
 
   var $win = $(window);
   var prerenderBuffer = document.createElement('canvas');
 
-  return Backbone.View.extend({
+  var PathPreviewComponentView = Lateralus.Component.View.extend({
+    template: template
 
     /**
      * @param {Object} opts
-     *   @param {Stylie} stylie
+     *   @param {Lateralus} lateralus
      *   @param {jQuery} $header
      *   @param {number} height
      *   @param {number} width
      */
-    initialize: function (opts) {
-      this.stylie = opts.stylie;
-      this.$header = opts.$header;
+    ,initialize: function (opts) {
+      this._super('initialize', arguments);
       this._isShowing = true;
       this.context = this.$el[0].getContext('2d');
       this.resize(opts.width, opts.height);
 
       var boundRender = _.bind(this.render, this);
-      this.listenTo(this.stylie, constant.PATH_CHANGED, boundRender);
-      this.listenTo(this.stylie, constant.KEYFRAME_ORDER_CHANGED, boundRender);
-      this.listenTo(this.stylie, constant.TOGGLE_PATH_AND_CROSSHAIRS,
+      this.listenTo(this.lateralus, constant.PATH_CHANGED, boundRender);
+      this.listenTo(
+        this.lateralus, constant.KEYFRAME_ORDER_CHANGED, boundRender);
+      this.listenTo(this.lateralus, constant.TOGGLE_PATH_AND_CROSSHAIRS,
           _.bind(this.showOrHidePath, this));
 
       $win.on('resize', _.bind(this.onWindowResize, this));
@@ -76,7 +84,7 @@ define([
     }
 
     ,generatePathPoints: function () {
-      var currentActorModel = this.stylie.actorCollection.getCurrent();
+      var currentActorModel = this.lateralus.actorCollection.getCurrent();
       var keyframeLength = currentActorModel.getLength();
       var transformKeyframeProperties =
           currentActorModel.get('actor').getPropertiesInTrack('transform');
@@ -135,7 +143,7 @@ define([
     }
 
     ,generatePathPrerender: function () {
-      var stylie = this.stylie;
+      var lateralus = this.lateralus;
       prerenderBuffer.width = this.$el.width();
       prerenderBuffer.height = this.$el.height();
       var ctx = prerenderBuffer.ctx = prerenderBuffer.getContext('2d');
@@ -177,4 +185,6 @@ define([
     }
 
   });
+
+  return PathPreviewComponentView;
 });

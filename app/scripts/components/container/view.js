@@ -9,6 +9,7 @@ define([
   ,'../../constants'
 
   ,'stylie.component.help-modal'
+  ,'stylie.component.path-preview'
 
   // Extensions
   ,'tabs'
@@ -20,7 +21,6 @@ define([
   ,'../../view/checkbox'
   ,'../../view/ease-select'
   ,'../../view/fps-slider'
-  ,'../../view/background'
   ,'../../view/css-output'
   ,'../../view/html-input'
   ,'../../view/custom-ease'
@@ -39,6 +39,7 @@ define([
   ,constant
 
   ,HelpModalComponent
+  ,PathPreviewComponent
 
   ,TabsView
   ,PaneView
@@ -48,7 +49,6 @@ define([
   ,CheckboxView
   ,EaseSelectView
   ,FPSSliderView
-  ,BackgroundView
   ,CSSOutputView
   ,HTMLInputView
   ,CustomEaseView
@@ -84,10 +84,9 @@ define([
         //stylie: this.lateralus
       //});
 
-      this.view.background = new BackgroundView({
-        stylie: this.lateralus
-        ,el: this.$('#tween-path')[0]
-        ,$header: this.$('header')
+      this.pathPreviewComponent = this.addComponent(PathPreviewComponent, {
+        el: this.$tweenPath[0]
+        ,$header: this.$header
         ,height: $win.height()
         ,width: $win.width()
       });
