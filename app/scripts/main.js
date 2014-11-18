@@ -74,6 +74,9 @@ require.config({
   }, {
     name: 'stylie.component.container'
     ,location: 'app/scripts/components/container'
+  }, {
+    name: 'stylie.component.help-modal'
+    ,location: 'app/scripts/components/help-modal'
   }]
 });
 

@@ -8,12 +8,13 @@ define([
 
   ,'../../constants'
 
+  ,'stylie.component.help-modal'
+
   // Extensions
   ,'tabs'
   ,'pane'
   ,'alert'
   ,'auto-update-textfield'
-  ,'modal'
 
   // Views
   ,'../../view/checkbox'
@@ -37,11 +38,12 @@ define([
 
   ,constant
 
+  ,HelpModalComponent
+
   ,TabsView
   ,PaneView
   ,AlertView
   ,AutoUpdateTextFieldView
-  ,ModalView
 
   ,CheckboxView
   ,EaseSelectView
@@ -73,9 +75,9 @@ define([
     }
 
     ,initSubviews: function () {
-      this.view.helpModal = new ModalView({
-        el: this.$('#help-contents')[0]
-        ,$triggerEl: this.$('#help-trigger')
+      this.helpModalComponent = this.addComponent(HelpModalComponent, {
+        el: this.$helpContents
+        ,$triggerEl: this.$helpTrigger
       });
 
       //this.view.rekapiControls = new RekapiControlsView({
