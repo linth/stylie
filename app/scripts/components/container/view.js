@@ -8,6 +8,7 @@ define([
 
   ,'../../constants'
 
+  ,'stylie.component.checkbox'
   ,'stylie.component.help-modal'
   ,'stylie.component.path-preview'
 
@@ -38,6 +39,7 @@ define([
 
   ,constant
 
+  ,CheckboxComponent
   ,HelpModalComponent
   ,PathPreviewComponent
 
@@ -84,15 +86,15 @@ define([
         //stylie: this.lateralus
       //});
 
-      this.pathPreviewComponent = this.addComponent(PathPreviewComponent, {
+      this.addComponent(PathPreviewComponent, {
         el: this.$tweenPath[0]
         ,$header: this.$header
         ,height: $win.height()
         ,width: $win.width()
       });
 
-      this.view.showPath = new CheckboxView({
-        $el: this.$('#show-path')
+      this.addSubview(CheckboxComponent.View, {
+        el: this.$('#show-path')[0]
         ,callHandlerOnInit: true
         ,onChange: _.bind(function (evt, isChecked) {
           this.trigger(constant.TOGGLE_PATH_AND_CROSSHAIRS, !!isChecked);
@@ -133,8 +135,8 @@ define([
       this.view.cssNameField = cssNameField;
 
       ['moz', 'ms', 'o', 'webkit', 'w3'].forEach(function (prefix) {
-        this.view[prefix + 'Checkbox'] = new CheckboxView({
-          $el: $('#' + prefix + '-toggle')
+        this.addSubview(CheckboxComponent.View, {
+          el: $('#' + prefix + '-toggle')[0]
           ,onChange: _.bind(function (evt, isChecked) {
             this.config.activeClasses[prefix] = isChecked;
             this.trigger(constant.UPDATE_CSS_OUTPUT);

@@ -72,6 +72,9 @@ require.config({
     ,location: 'app/scripts'
     ,main: 'stylie'
   }, {
+    name: 'stylie.component.checkbox'
+    ,location: 'app/scripts/components/checkbox'
+  }, {
     name: 'stylie.component.container'
     ,location: 'app/scripts/components/container'
   }, {
