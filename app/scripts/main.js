@@ -83,6 +83,9 @@ require.config({
   }, {
     name: 'stylie.component.path-preview'
     ,location: 'app/scripts/components/path-preview'
+  }, {
+    name: 'stylie.component.draggable-pane'
+    ,location: 'app/scripts/components/draggable-pane'
   }]
 });
 

@@ -11,10 +11,10 @@ define([
   ,'stylie.component.checkbox'
   ,'stylie.component.help-modal'
   ,'stylie.component.path-preview'
+  ,'stylie.component.draggable-pane'
 
   // Extensions
   ,'tabs'
-  ,'pane'
   ,'alert'
   ,'auto-update-textfield'
 
@@ -42,9 +42,9 @@ define([
   ,CheckboxComponent
   ,HelpModalComponent
   ,PathPreviewComponent
+  ,DraggablePaneComponent
 
   ,TabsView
-  ,PaneView
   ,AlertView
   ,AutoUpdateTextFieldView
 
@@ -102,7 +102,7 @@ define([
       });
 
       var controlPaneEl = this.$('#control-pane')[0];
-      this.view.controlPane = new PaneView({
+      this.controlPane = this.addSubview(DraggablePaneComponent.View, {
         el: controlPaneEl
       });
 
