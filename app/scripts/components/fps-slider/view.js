@@ -1,29 +1,35 @@
 define([
 
   'underscore'
-  ,'backbone'
+  ,'lateralus'
 
-  ,'../constants'
+  ,'text!./template.mustache'
+
+  ,'../../constants'
 
 ], function (
 
   _
-  ,Backbone
+  ,Lateralus
+
+  ,template
 
   ,constant
 
 ) {
+  'use strict';
 
-  return Backbone.View.extend({
+  var FPS_RANGE =
+        constant.MAXIMUM_CSS_OUTPUT_FPS - constant.MINIMUM_CSS_OUTPUT_FPS;
 
-    FPS_RANGE:
-        constant.MAXIMUM_CSS_OUTPUT_FPS - constant.MINIMUM_CSS_OUTPUT_FPS
+  var FpsSliderComponentView = Lateralus.Component.View.extend({
+    template: template
 
     /**
-     * @param {Stylie} stylie
+     * @param {Object} [options] See http://backbonejs.org/#View-constructor
      */
     ,initialize: function (opts) {
-      this.stylie = opts.stylie;
+      this._super('initialize', arguments);
 
       this.$el.dragonSlider({
         drag: _.bind(this.onSliderDrag, this)
@@ -37,7 +43,7 @@ define([
     }
 
     ,onSliderDrag: function (val) {
-      this.stylie.trigger(constant.UPDATE_CSS_OUTPUT);
+      this.lateralus.trigger(constant.UPDATE_CSS_OUTPUT);
     }
 
     ,getFPS: function () {
@@ -47,4 +53,5 @@ define([
     }
   });
 
+  return FpsSliderComponentView;
 });

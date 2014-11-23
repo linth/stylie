@@ -14,6 +14,7 @@ define([
   ,'stylie.component.draggable-pane'
   ,'stylie.component.tabs'
   ,'stylie.component.css-output'
+  ,'stylie.component.fps-slider'
 
   // Extensions
   ,'alert'
@@ -22,7 +23,6 @@ define([
   // Views
   ,'../../view/checkbox'
   ,'../../view/ease-select'
-  ,'../../view/fps-slider'
   ,'../../view/html-input'
   ,'../../view/custom-ease'
   ,'../../view/rekapi-controls'
@@ -45,13 +45,13 @@ define([
   ,DraggablePaneComponent
   ,TabsComponent
   ,CssOutputComponent
+  ,FpsSliderComponent
 
   ,AlertView
   ,AutoUpdateTextFieldView
 
   ,CheckboxView
   ,EaseSelectView
-  ,FPSSliderView
   ,HTMLInputView
   ,CustomEaseView
   ,RekapiControlsView
@@ -118,9 +118,8 @@ define([
         ,$animationIteration: this.$('#iterations')
       });
 
-      this.view.fpsSlider = new FPSSliderView({
-        stylie: this.lateralus
-        ,el: this.$('.quality-slider.fps .slider')[0]
+      this.addComponent(FpsSliderComponent, {
+        el: this.$('.quality-slider.fps .slider')[0]
       });
 
       var cssNameField = new AutoUpdateTextFieldView({

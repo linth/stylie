@@ -92,6 +92,9 @@ require.config({
   }, {
     name: 'stylie.component.css-output'
     ,location: 'app/scripts/components/css-output'
+  }, {
+    name: 'stylie.component.fps-slider'
+    ,location: 'app/scripts/components/fps-slider'
   }]
 });
 
