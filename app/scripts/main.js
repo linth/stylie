@@ -86,6 +86,9 @@ require.config({
   }, {
     name: 'stylie.component.draggable-pane'
     ,location: 'app/scripts/components/draggable-pane'
+  }, {
+    name: 'stylie.component.tabs'
+    ,location: 'app/scripts/components/tabs'
   }]
 });
 

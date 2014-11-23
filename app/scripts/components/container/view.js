@@ -12,9 +12,9 @@ define([
   ,'stylie.component.help-modal'
   ,'stylie.component.path-preview'
   ,'stylie.component.draggable-pane'
+  ,'stylie.component.tabs'
 
   // Extensions
-  ,'tabs'
   ,'alert'
   ,'auto-update-textfield'
 
@@ -43,8 +43,8 @@ define([
   ,HelpModalComponent
   ,PathPreviewComponent
   ,DraggablePaneComponent
+  ,TabsComponent
 
-  ,TabsView
   ,AlertView
   ,AutoUpdateTextFieldView
 
@@ -102,18 +102,18 @@ define([
       });
 
       var controlPaneEl = this.$('#control-pane')[0];
-      this.controlPane = this.addSubview(DraggablePaneComponent.View, {
+      this.addSubview(DraggablePaneComponent.View, {
         el: controlPaneEl
       });
 
-      this.view.controlPaneTabs = new TabsView({
+      this.controlPaneTabsView = this.addSubview(TabsComponent.View, {
         el: controlPaneEl
       });
 
       this.view.cssOutput = new CSSOutputView({
         stylie: this.lateralus
         ,el: this.$('#css-output textarea')[0]
-        ,$trigger: this.view.controlPaneTabs.$el
+        ,$trigger: this.controlPaneTabsView.$el
             .find('[data-target="css-output"]')
         ,$animationIteration: $('#iterations')
       });
