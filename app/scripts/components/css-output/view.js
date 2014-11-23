@@ -2,19 +2,24 @@ define([
 
   'jquery'
   ,'underscore'
-  ,'backbone'
+  ,'lateralus'
 
-  ,'../constants'
+  ,'../../constants'
+
+  ,'text!./template.mustache'
 
 ], function (
 
   $
   ,_
-  ,Backbone
+  ,Lateralus
 
   ,constant
 
+  ,template
+
 ) {
+  'use strict';
 
   var checkboxToVendorMap = {
     moz: 'mozilla'
@@ -24,9 +29,9 @@ define([
     ,w3: 'w3'
   };
 
-  function getPrefixList (stylie) {
+  function getPrefixList (lateralus) {
     var prefixList = [];
-    _.each(stylie.config.activeClasses, function (isActive, vendorName) {
+    _.each(lateralus.config.activeClasses, function (isActive, vendorName) {
       if (isActive) {
         prefixList.push(checkboxToVendorMap[vendorName]);
       }
@@ -35,23 +40,21 @@ define([
     return prefixList;
   }
 
-  return Backbone.View.extend({
-
-    events: { }
+  var CssOutputComponentView = Lateralus.Component.View.extend({
+    template: template
 
     /**
-     * @param {Object} opts
-     *   @param {Stylie} stylie
+     * @param {Object} [options] See http://backbonejs.org/#View-constructor
      *   @param {jQuery} $trigger
      */
-    ,initialize: function (opts) {
-      this.stylie = opts.stylie;
-      this.$trigger = opts.$trigger;
-      this.$animationIteration = opts.$animationIteration;
+    ,initialize: function (options) {
+      this._super('initialize', arguments);
+      this.$trigger = options.$trigger;
+      this.$animationIteration = options.$animationIteration;
       this.$actorEl = $('#preview-area .rekapi-actor');
 
       this.$trigger.on('click', _.bind(this.onTriggerClick, this));
-      this.listenTo(this.stylie,
+      this.listenTo(this.lateralus,
           constant.UPDATE_CSS_OUTPUT, _.bind(this.renderCSS, this));
     }
 
@@ -60,10 +63,10 @@ define([
     }
 
     ,renderCSS: function () {
-      var stylie = this.stylie;
-      var cssClassName = stylie.view.cssNameField.$el.val();
+      var lateralus = this.lateralus;
+      var cssClassName = lateralus.view.cssNameField.$el.val();
 
-      var currentActor = stylie.actorCollection.getCurrent();
+      var currentActor = lateralus.actorCollection.getCurrent();
       var keyframeCollection = currentActor.keyframeCollection;
       var firstKeyframe = keyframeCollection.first();
       var offsets = this.isOutputOrientedToFirstKeyframe()
@@ -71,12 +74,12 @@ define([
           : { x: 0, y: 0 };
       keyframeCollection.offsetKeyframes(offsets);
 
-      var cssOutput = stylie.rekapi.renderer.toString({
-        vendors: getPrefixList(stylie)
+      var cssOutput = lateralus.rekapi.renderer.toString({
+        vendors: getPrefixList(lateralus)
         ,name: cssClassName
         ,iterations: this.$animationIteration.val()
         ,isCentered: currentActor.get('isCenteredToPath')
-        ,fps: stylie.view.fpsSlider.getFPS()
+        ,fps: lateralus.view.fpsSlider.getFPS()
       });
 
       // Reverse the offset
@@ -92,8 +95,10 @@ define([
      * @return {boolean}
      */
     ,isOutputOrientedToFirstKeyframe: function () {
-      return this.stylie.view.orientation.getOrientation()
+      return this.lateralus.view.orientation.getOrientation()
         === 'first-keyframe';
     }
   });
+
+  return CssOutputComponentView;
 });

@@ -13,6 +13,7 @@ define([
   ,'stylie.component.path-preview'
   ,'stylie.component.draggable-pane'
   ,'stylie.component.tabs'
+  ,'stylie.component.css-output'
 
   // Extensions
   ,'alert'
@@ -22,7 +23,6 @@ define([
   ,'../../view/checkbox'
   ,'../../view/ease-select'
   ,'../../view/fps-slider'
-  ,'../../view/css-output'
   ,'../../view/html-input'
   ,'../../view/custom-ease'
   ,'../../view/rekapi-controls'
@@ -44,6 +44,7 @@ define([
   ,PathPreviewComponent
   ,DraggablePaneComponent
   ,TabsComponent
+  ,CssOutputComponent
 
   ,AlertView
   ,AutoUpdateTextFieldView
@@ -51,7 +52,6 @@ define([
   ,CheckboxView
   ,EaseSelectView
   ,FPSSliderView
-  ,CSSOutputView
   ,HTMLInputView
   ,CustomEaseView
   ,RekapiControlsView
@@ -102,6 +102,7 @@ define([
       });
 
       var controlPaneEl = this.$('#control-pane')[0];
+
       this.addSubview(DraggablePaneComponent.View, {
         el: controlPaneEl
       });
@@ -110,12 +111,11 @@ define([
         el: controlPaneEl
       });
 
-      this.view.cssOutput = new CSSOutputView({
-        stylie: this.lateralus
-        ,el: this.$('#css-output textarea')[0]
+      this.addComponent(CssOutputComponent, {
+        el: this.$cssOutput[0]
         ,$trigger: this.controlPaneTabsView.$el
             .find('[data-target="css-output"]')
-        ,$animationIteration: $('#iterations')
+        ,$animationIteration: this.$('#iterations')
       });
 
       this.view.fpsSlider = new FPSSliderView({

@@ -89,6 +89,9 @@ require.config({
   }, {
     name: 'stylie.component.tabs'
     ,location: 'app/scripts/components/tabs'
+  }, {
+    name: 'stylie.component.css-output'
+    ,location: 'app/scripts/components/css-output'
   }]
 });
 
